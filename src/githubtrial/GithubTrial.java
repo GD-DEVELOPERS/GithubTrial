@@ -26,7 +26,7 @@ public class GithubTrial {
         // Eto na ung bagong comment
 
         //e2 bago bro
-        
+        System.out.println("POGI ko");
     }
     
 }
