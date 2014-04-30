@@ -6,9 +6,10 @@
 
 package joeysproject;
 
-import java.awt.Dimension;
-import java.awt.Toolkit;
+
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 
 
 
@@ -24,7 +25,7 @@ public class Main extends javax.swing.JFrame {
     public Main() {
         initComponents();
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        //this.setSize(JFrame.MAXIMIZED_BOTH);
+        onload();//on system load
       
     }
 
@@ -39,50 +40,393 @@ public class Main extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         side_control_panel = new javax.swing.JPanel();
+        Main_button = new javax.swing.JPanel();
+        btn_inventory = new javax.swing.JButton();
+        btn_Invoice = new javax.swing.JButton();
+        btn_Request = new javax.swing.JButton();
+        btn_Settings = new javax.swing.JButton();
+        btn_logout = new javax.swing.JButton();
+        btn_view_request = new javax.swing.JButton();
+        Warehouse_button = new javax.swing.JPanel();
+        btn_inventory_warehouse = new javax.swing.JButton();
+        btn_viewrequest_warehouse = new javax.swing.JButton();
+        btn_logout_warehouse = new javax.swing.JButton();
         navigator_panel = new javax.swing.JPanel();
+        panel_inventory = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        panel_invoice = new javax.swing.JPanel();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        panel_request = new javax.swing.JPanel();
+        jPanel6 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        panel_view_request = new javax.swing.JPanel();
+        jPanel7 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        panel_settings = new javax.swing.JPanel();
+        jPanel8 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Joey's System");
-        setMinimumSize(new java.awt.Dimension(800, 400));
         setPreferredSize(new java.awt.Dimension(800, 400));
         setResizable(false);
         setType(java.awt.Window.Type.POPUP);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(102, 102, 102));
 
-        javax.swing.GroupLayout side_control_panelLayout = new javax.swing.GroupLayout(side_control_panel);
-        side_control_panel.setLayout(side_control_panelLayout);
-        side_control_panelLayout.setHorizontalGroup(
-            side_control_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 127, Short.MAX_VALUE)
+        side_control_panel.setLayout(new java.awt.CardLayout());
+
+        btn_inventory.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
+        btn_inventory.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/list-48.png"))); // NOI18N
+        btn_inventory.setText("Inventory");
+        btn_inventory.setBorder(null);
+        btn_inventory.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btn_inventory.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/images/hover_list-48.png"))); // NOI18N
+        btn_inventory.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btn_inventory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_inventoryActionPerformed(evt);
+            }
+        });
+
+        btn_Invoice.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
+        btn_Invoice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/invoice-50.png"))); // NOI18N
+        btn_Invoice.setText("Invoice ");
+        btn_Invoice.setBorder(null);
+        btn_Invoice.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btn_Invoice.setIconTextGap(5);
+        btn_Invoice.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btn_Invoice.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_InvoiceActionPerformed(evt);
+            }
+        });
+
+        btn_Request.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
+        btn_Request.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/bell_service-50.png"))); // NOI18N
+        btn_Request.setText("Request Product");
+        btn_Request.setBorder(null);
+        btn_Request.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btn_Request.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/images/hove_bell_service-50.png"))); // NOI18N
+        btn_Request.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        btn_Request.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btn_Request.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_RequestActionPerformed(evt);
+            }
+        });
+
+        btn_Settings.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
+        btn_Settings.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/settings-48.png"))); // NOI18N
+        btn_Settings.setText("Settings");
+        btn_Settings.setBorder(null);
+        btn_Settings.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btn_Settings.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btn_Settings.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_SettingsActionPerformed(evt);
+            }
+        });
+
+        btn_logout.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
+        btn_logout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logout-26.png"))); // NOI18N
+        btn_logout.setText("Logout");
+        btn_logout.setBorder(null);
+        btn_logout.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        btn_logout.setIconTextGap(15);
+        btn_logout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_logoutActionPerformed(evt);
+            }
+        });
+
+        btn_view_request.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
+        btn_view_request.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/show_property-48.png"))); // NOI18N
+        btn_view_request.setText("View Request");
+        btn_view_request.setBorder(null);
+        btn_view_request.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btn_view_request.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btn_view_request.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_view_requestActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout Main_buttonLayout = new javax.swing.GroupLayout(Main_button);
+        Main_button.setLayout(Main_buttonLayout);
+        Main_buttonLayout.setHorizontalGroup(
+            Main_buttonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Main_buttonLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(Main_buttonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btn_inventory, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_Invoice, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_Request, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
+                    .addComponent(btn_logout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_Settings, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
+                    .addComponent(btn_view_request, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE))
+                .addContainerGap())
         );
-        side_control_panelLayout.setVerticalGroup(
-            side_control_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+        Main_buttonLayout.setVerticalGroup(
+            Main_buttonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Main_buttonLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btn_inventory, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btn_Invoice, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btn_Request, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btn_view_request, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btn_Settings, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btn_logout, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
-        javax.swing.GroupLayout navigator_panelLayout = new javax.swing.GroupLayout(navigator_panel);
-        navigator_panel.setLayout(navigator_panelLayout);
-        navigator_panelLayout.setHorizontalGroup(
-            navigator_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+        side_control_panel.add(Main_button, "card3");
+
+        btn_inventory_warehouse.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
+        btn_inventory_warehouse.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/list-48.png"))); // NOI18N
+        btn_inventory_warehouse.setText("Inventory");
+        btn_inventory_warehouse.setBorder(null);
+        btn_inventory_warehouse.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btn_inventory_warehouse.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/images/hover_list-48.png"))); // NOI18N
+        btn_inventory_warehouse.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+
+        btn_viewrequest_warehouse.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
+        btn_viewrequest_warehouse.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/detective-48.png"))); // NOI18N
+        btn_viewrequest_warehouse.setText("View Request");
+        btn_viewrequest_warehouse.setBorder(null);
+        btn_viewrequest_warehouse.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btn_viewrequest_warehouse.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/images/hover_list-48.png"))); // NOI18N
+        btn_viewrequest_warehouse.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+
+        btn_logout_warehouse.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
+        btn_logout_warehouse.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logout-26.png"))); // NOI18N
+        btn_logout_warehouse.setText("Logout");
+        btn_logout_warehouse.setBorder(null);
+        btn_logout_warehouse.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        btn_logout_warehouse.setIconTextGap(15);
+
+        javax.swing.GroupLayout Warehouse_buttonLayout = new javax.swing.GroupLayout(Warehouse_button);
+        Warehouse_button.setLayout(Warehouse_buttonLayout);
+        Warehouse_buttonLayout.setHorizontalGroup(
+            Warehouse_buttonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Warehouse_buttonLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(Warehouse_buttonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btn_inventory_warehouse, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
+                    .addComponent(btn_viewrequest_warehouse, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
+                    .addComponent(btn_logout_warehouse, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
-        navigator_panelLayout.setVerticalGroup(
-            navigator_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 428, Short.MAX_VALUE)
+        Warehouse_buttonLayout.setVerticalGroup(
+            Warehouse_buttonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Warehouse_buttonLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btn_inventory_warehouse, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btn_viewrequest_warehouse, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 123, Short.MAX_VALUE)
+                .addComponent(btn_logout_warehouse, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
+
+        side_control_panel.add(Warehouse_button, "card2");
+
+        navigator_panel.setLayout(new java.awt.CardLayout());
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI Light", 1, 24)); // NOI18N
+        jLabel1.setText("Inventory");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 827, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addContainerGap(505, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 63, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addContainerGap())
         );
+
+        javax.swing.GroupLayout panel_inventoryLayout = new javax.swing.GroupLayout(panel_inventory);
+        panel_inventory.setLayout(panel_inventoryLayout);
+        panel_inventoryLayout.setHorizontalGroup(
+            panel_inventoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        panel_inventoryLayout.setVerticalGroup(
+            panel_inventoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel_inventoryLayout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 322, Short.MAX_VALUE))
+        );
+
+        navigator_panel.add(panel_inventory, "card2");
+
+        jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI Light", 1, 24)); // NOI18N
+        jLabel2.setText("Invoice");
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2)
+                .addContainerGap(530, Short.MAX_VALUE))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout panel_invoiceLayout = new javax.swing.GroupLayout(panel_invoice);
+        panel_invoice.setLayout(panel_invoiceLayout);
+        panel_invoiceLayout.setHorizontalGroup(
+            panel_invoiceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        panel_invoiceLayout.setVerticalGroup(
+            panel_invoiceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel_invoiceLayout.createSequentialGroup()
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 333, Short.MAX_VALUE))
+        );
+
+        navigator_panel.add(panel_invoice, "card3");
+
+        jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI Light", 1, 24)); // NOI18N
+        jLabel3.setText("Request Product");
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel3)
+                .addContainerGap(527, Short.MAX_VALUE))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel3)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout panel_requestLayout = new javax.swing.GroupLayout(panel_request);
+        panel_request.setLayout(panel_requestLayout);
+        panel_requestLayout.setHorizontalGroup(
+            panel_requestLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        panel_requestLayout.setVerticalGroup(
+            panel_requestLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel_requestLayout.createSequentialGroup()
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 323, Short.MAX_VALUE))
+        );
+
+        navigator_panel.add(panel_request, "card4");
+
+        jPanel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI Light", 1, 24)); // NOI18N
+        jLabel4.setText("View Request Product");
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel4)
+                .addContainerGap(368, Short.MAX_VALUE))
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel4)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout panel_view_requestLayout = new javax.swing.GroupLayout(panel_view_request);
+        panel_view_request.setLayout(panel_view_requestLayout);
+        panel_view_requestLayout.setHorizontalGroup(
+            panel_view_requestLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        panel_view_requestLayout.setVerticalGroup(
+            panel_view_requestLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel_view_requestLayout.createSequentialGroup()
+                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 322, Short.MAX_VALUE))
+        );
+
+        navigator_panel.add(panel_view_request, "card6");
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI Light", 1, 24)); // NOI18N
+        jLabel5.setText("Settings");
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel5)
+                .addContainerGap(523, Short.MAX_VALUE))
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel5)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout panel_settingsLayout = new javax.swing.GroupLayout(panel_settings);
+        panel_settings.setLayout(panel_settingsLayout);
+        panel_settingsLayout.setHorizontalGroup(
+            panel_settingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        panel_settingsLayout.setVerticalGroup(
+            panel_settingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel_settingsLayout.createSequentialGroup()
+                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 324, Short.MAX_VALUE))
+        );
+
+        navigator_panel.add(panel_settings, "card5");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -90,11 +434,9 @@ public class Main extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(side_control_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(side_control_panel, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(navigator_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(navigator_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -102,11 +444,8 @@ public class Main extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(side_control_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
-                        .addComponent(navigator_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(navigator_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(side_control_panel, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -124,6 +463,65 @@ public class Main extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btn_logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_logoutActionPerformed
+        // TODO add your handling code here:
+       int question = JOptionPane.showConfirmDialog(null, "Do you want to logout?","Logout",JOptionPane.YES_NO_OPTION);
+       if(question == 0){
+           new frm_login().setVisible(true);
+           dispose();
+       }
+    }//GEN-LAST:event_btn_logoutActionPerformed
+
+    private void btn_inventoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_inventoryActionPerformed
+        // TODO add your handling code here:
+        onload();
+    }//GEN-LAST:event_btn_inventoryActionPerformed
+
+    private void btn_InvoiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_InvoiceActionPerformed
+        // TODO add your handling code here:
+        panel_inventory.setVisible(false);
+        panel_invoice.setVisible(true);
+        panel_request.setVisible(false);
+        panel_view_request.setVisible(false);
+        panel_settings.setVisible(false);
+    }//GEN-LAST:event_btn_InvoiceActionPerformed
+
+    private void btn_RequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_RequestActionPerformed
+        // TODO add your handling code here:
+        panel_inventory.setVisible(false);
+        panel_invoice.setVisible(false);
+        panel_request.setVisible(true);
+        panel_view_request.setVisible(false);
+        panel_settings.setVisible(false);
+    }//GEN-LAST:event_btn_RequestActionPerformed
+
+    private void btn_view_requestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_view_requestActionPerformed
+        // TODO add your handling code here:
+        panel_inventory.setVisible(false);
+        panel_invoice.setVisible(false);
+        panel_request.setVisible(false);
+        panel_view_request.setVisible(true);
+        panel_settings.setVisible(false);
+    }//GEN-LAST:event_btn_view_requestActionPerformed
+
+    private void btn_SettingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SettingsActionPerformed
+        // TODO add your handling code here:
+        panel_inventory.setVisible(false);
+        panel_invoice.setVisible(false);
+        panel_request.setVisible(false);
+        panel_view_request.setVisible(false);
+        panel_settings.setVisible(true);
+    }//GEN-LAST:event_btn_SettingsActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+        int question = JOptionPane.showConfirmDialog(null, "Do you want to logout?","Logout",JOptionPane.YES_NO_OPTION);
+       if(question == 0){
+           new frm_login().setVisible(true);
+           dispose();
+       }
+    }//GEN-LAST:event_formWindowClosing
+
     /**
      * @param args the command line arguments
      */
@@ -135,11 +533,12 @@ public class Main extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+               /* if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-                }
-            }
+                }*/
+                UIManager.setLookAndFeel("com.jtattoo.plaf.fast.FastLookAndFeel");
+            } 
         } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
@@ -160,11 +559,44 @@ public class Main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel Main_button;
+    private javax.swing.JPanel Warehouse_button;
+    private javax.swing.JButton btn_Invoice;
+    private javax.swing.JButton btn_Request;
+    private javax.swing.JButton btn_Settings;
+    private javax.swing.JButton btn_inventory;
+    private javax.swing.JButton btn_inventory_warehouse;
+    private javax.swing.JButton btn_logout;
+    private javax.swing.JButton btn_logout_warehouse;
+    private javax.swing.JButton btn_view_request;
+    private javax.swing.JButton btn_viewrequest_warehouse;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel navigator_panel;
+    private javax.swing.JPanel panel_inventory;
+    private javax.swing.JPanel panel_invoice;
+    private javax.swing.JPanel panel_request;
+    private javax.swing.JPanel panel_settings;
+    private javax.swing.JPanel panel_view_request;
     private javax.swing.JPanel side_control_panel;
     // End of variables declaration//GEN-END:variables
 
-
+    public final void onload(){
+        panel_inventory.setVisible(true);
+        panel_invoice.setVisible(false);
+        panel_request.setVisible(false);
+        panel_view_request.setVisible(false);
+        panel_settings.setVisible(false);
+    }
 }
